@@ -1,17 +1,23 @@
 package io.sevenx.employeemanagement;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import io.sevenx.employeemanagement.data.*;
+import io.sevenx.employeemanagement.db.DatabaseManager;
+import io.sevenx.employeemanagement.ui.Display;
+import io.sevenx.employeemanagement.xml.EmployeeXmlParser;
 public class EmployeeManagement {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Developer dev = new Developer();
-		dev.setFirstName("Ishan");
-		dev.setLastName("Dushettiwar");
-		dev.setBaseSalary(200000);
-		dev.setBonus(50000);
-		System.out.println("Developer of the month is "+dev.getFirstName()+" "+dev.getLastName());
-		System.out.println("His salary with bonus  is "+dev.getSalary());
+	public static void main(String[] args) throws SQLException {
+
+		String path = "C:\\Users\\ishan\\eclipse-workspace\\EmployeeManagement\\src\\io\\sevenx\\employeemanagement\\xml\\employees.xml"; 
+
+		List<Employee> employee = EmployeeXmlParser.parser(path);
+		DatabaseManager.putInDatabase(employee);
+		List<Employee> employeeList = DatabaseManager.getFromDatabase();
+		
+		Display.printEmployeeInfo(employeeList);
 		
 
 	}

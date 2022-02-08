@@ -1,5 +1,8 @@
 package io.sevenx.employeemanagement.data;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Employee {
     private static int maxEmployeeId =0;
     private int employeeId;
@@ -60,4 +63,6 @@ public class Employee {
     public static void setMaxEmployeeId(int maxEmployeeId) {
         Employee.maxEmployeeId = maxEmployeeId;
     }
+    
+    //public abstract int getSalary();
 }
