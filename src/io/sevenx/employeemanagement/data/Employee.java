@@ -12,7 +12,7 @@ public class Employee {
     private int baseSalary;
 
     public Employee(){
-        setEmployeeId(++maxEmployeeId);
+        //setEmployeeId(++maxEmployeeId);
         setEmail(firstName+lastName+"@sevenx.io");
     }
 

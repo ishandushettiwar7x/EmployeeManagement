@@ -10,7 +10,7 @@ public class Display {
 	    	System.out.println("Name: " + e.getFirstName() + " " + e.getLastName() );
 	    	System.out.println("Email: " + e.getEmail() );
 	    	System.out.println("Salary: " + e.getBaseSalary());
-	    	
+	    	System.out.println("Id: " + e.getEmployeeId());
 	    	System.out.println("==========================");
 	    	
 	    	}

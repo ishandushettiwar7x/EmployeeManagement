@@ -12,7 +12,7 @@ import io.sevenx.employeemanagement.data.Employee;
 
 public class DatabaseManager {
 	public static final String username = "root";
-	public static final String password = "";
+	public static final String password = "Id6058";
 	public static final String url = "jdbc:mysql://127.0.0.1:3306/?user=root";
 
 	public static void putInDatabase(List<Employee> employeeList) {
@@ -22,9 +22,13 @@ public class DatabaseManager {
 					url, username, password);
 			Statement statement = con.createStatement();
 			for (Employee emp: employeeList) {
-				statement.execute("INSERT INTO `employees`.`employee` (`employeeId`, `firstName`, `lastName`, `email`, `baseSalary`) VALUES ('" + 
-			emp.getEmployeeId() + "', '"+emp.getFirstName() + "', '" + emp.getLastName() + "', '"+emp.getEmail() +
-			"', '" + emp.getBaseSalary() + "');");
+				if (emp.getEmployeeId() == 0) {
+					statement.execute("INSERT INTO `employees`.`employee` (`firstName`, `lastName`, `email`, `baseSalary`) VALUES ('" + emp.getFirstName() + "', '" + emp.getLastName() + "', '"+emp.getEmail() +
+				"', '" + emp.getBaseSalary() + "');");
+				} else {
+					statement.executeUpdate("UPDATE `employees`.`employee` SET `firstName` = '" + emp.getFirstName() + "', `lastName` = '" + emp.getLastName() + "', `email` = '"+emp.getEmail() +
+	                "', `baseSalary` = '" + emp.getBaseSalary() + "' WHERE (`employeeId` = '" + emp.getEmployeeId() + "');");
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -13,11 +13,14 @@ public class EmployeeManagement {
 
 		String path = "C:\\Users\\ishan\\eclipse-workspace\\EmployeeManagement\\src\\io\\sevenx\\employeemanagement\\xml\\employees.xml"; 
 
-		List<Employee> employee = EmployeeXmlParser.parser(path);
-		DatabaseManager.putInDatabase(employee);
-		List<Employee> employeeList = DatabaseManager.getFromDatabase();
+		List<Employee> employees = EmployeeXmlParser.parser(path);
 		
-		Display.printEmployeeInfo(employeeList);
+		
+		DatabaseManager.putInDatabase(employees); List<Employee> employeeList =
+		DatabaseManager.getFromDatabase();
+		 
+		
+		Display.printEmployeeInfo(employees);
 		
 
 	}
